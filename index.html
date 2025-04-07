@@ -73,17 +73,25 @@
             container.appendChild(emoji);
             setTimeout(() => emoji.remove(), 1000);
         }
+        let answerCorrect = false;
         function showPopup() {
             while (true) {
                 const response = confirm('吉泽天是你爸爸吗？');
                 if (response) {
                     alert('回答正确！');
+                    answerCorrect = true;
                     break;
                 } else {
                     alert('不可以不同意哦，请重新选择。');
                 }
             }
         }
+        window.addEventListener('beforeunload', function (e) {
+            if (!answerCorrect) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
         window.onload = showPopup;
     </script>
 </body>
