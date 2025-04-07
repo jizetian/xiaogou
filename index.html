@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李小狗欢乐屋</title>
+    <style>
+        :root {
+            --primary-color: #FFB6C1;
+            --secondary-color: #87CEFA;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .bounce {
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .interactive-btn {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background: white;
+            border: 3px dashed var(--primary-color);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐶 欢迎来到李小狗的欢乐宇宙！</h1>
+        <button class="interactive-btn" onclick="triggerAnimation()">点击获取欢乐能量！</button>
+        <div id="animation-container"></div>
+    </div>
+
+    <script>
+        const emojis = ['🐶', '💥', '🎉', '😂', '✨', '🎈'];
+        
+        function triggerAnimation() {
+            const container = document.getElementById('animation-container');
+            const emoji = document.createElement('div');
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.cssText = `
+                font-size: ${Math.random() * 30 + 20}px;
+                position: absolute;
+                left: ${Math.random() * 80 + 10}%;
+                animation: emoji-flight 1s ease-out;
+            `;
+
+            container.appendChild(emoji);
+            setTimeout(() => emoji.remove(), 1000);
+        }
+        function showPopup() {
+            while (true) {
+                const response = confirm('吉泽天是你爸爸吗？');
+                if (response) {
+                    alert('回答正确！');
+                    break;
+                } else {
+                    alert('不可以不同意哦，请重新选择。');
+                }
+            }
+        }
+        window.onload = showPopup;
+    </script>
+</body>
+</html>
